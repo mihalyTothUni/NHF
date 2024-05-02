@@ -1,0 +1,44 @@
+\doxysection{database.\+h}
+\hypertarget{database_8h_source}{}\label{database_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}film.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ NHF\_DATABASE\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ NHF\_DATABASE\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ defCap\ 10}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_database}{Database}}\{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_film}{Film}}**\ pData;\ \ \ \ \ \ \ \textcolor{comment}{//tarolo}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size;\ \ \ \ \ \ \ \ \textcolor{comment}{//elemek\ szama}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ capacity;\ \ \ \ \textcolor{comment}{//tarolo\ kapacitas}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ extend();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_film}{Film}}*\ search(std::string\ title);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ getSize()\ \{\ \textcolor{keywordflow}{return}\ size;\ \}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_database_a599dfbcc0d9e622827b8ce70d50f6a3b}{Database}}(\textcolor{keywordtype}{size\_t}\ cap\ =\ defCap);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_database_a84d399a2ad58d69daab9b05330e1316d}{\string~Database}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_a1dc73797c1ea0af0ee5a365d9a74e240}{add}}(\mbox{\hyperlink{class_film}{Film}}*\ film);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_a2675ebbd47e28ac8d73e690c7be3917b}{remove}}(std::string\ title);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_ab0ad49bc36e0eb3f7fd21390f88ee584}{searchAndList}}(std::string\ title,\ std::ostream\&\ os);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_aa070658c63d3147069fcb837975f2bdf}{listAll}}(std::ostream\&\ os);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \textcolor{keyword}{import}(std::string\ filename);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_database_a5574d0c3359248ccbcef7fba86c7abfd}{exportdb}}(std::string\ filename);}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//NHF\_DATABASE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,3 @@
+C:/code/uni/term 2/NHF/cmake-build-debug/CMakeFiles/NHF.dir
+C:/code/uni/term 2/NHF/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/code/uni/term 2/NHF/cmake-build-debug/CMakeFiles/rebuild_cache.dir

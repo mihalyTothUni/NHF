@@ -1,0 +1,115 @@
+\doxysection{Family Class Reference}
+\hypertarget{class_family}{}\label{class_family}\index{Family@{Family}}
+
+
+csaladi film  
+
+
+
+
+{\ttfamily \#include $<$family.\+h$>$}
+
+Inheritance diagram for Family\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_family}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_family_a9babfacf301bda421d7dc7672d51e706}{Family}} (std\+::string title, int runtime, int release, int rating)
+\item 
+\Hypertarget{class_family_a81fd39d70f4ebce3fe4aae7711f29b7e}\label{class_family_a81fd39d70f4ebce3fe4aae7711f29b7e} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Family} ()=default
+\begin{DoxyCompactList}\small\item\em family dtor \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_family_a6d48c088236fcb8dab0b1e13304e4f4c}{set\+Rating}} (int rated)
+\item 
+int \mbox{\hyperlink{class_family_aad711072bfc69d45b63d9e565adbf876}{get\+Rating}} ()
+\item 
+void \mbox{\hyperlink{class_family_a66eb37c8cc9105c0e38dab370c00a9f4}{list\+Attributes}} (std\+::ostream \&os) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_film}{Film}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_film_a4a387828b01a0c6aa0886fc8d353a824}{Film}} (std\+::string title, int runtime, int release)
+\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Film} ()=default
+\begin{DoxyCompactList}\small\item\em film dtor \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_film_a45b2d6c6fc6886d06571ed3178e09938}{get\+Title}} ()
+\item 
+int \mbox{\hyperlink{class_film_af42566b529f602a720d59c62de1e6f47}{get\+Runtime}} ()
+\item 
+int \mbox{\hyperlink{class_film_a272b4c62fc23b9aa551e7c20314a0553}{get\+Release}} ()
+\item 
+void \mbox{\hyperlink{class_film_a8ee74d771540d6129eb5eedd766b1c54}{set\+Title}} (int title)
+\item 
+void \mbox{\hyperlink{class_film_a4bb524ec25c7d7ec94c81e22cbe0a757}{set\+Runtime}} (int runtime)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+csaladi film 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_family_a9babfacf301bda421d7dc7672d51e706}\label{class_family_a9babfacf301bda421d7dc7672d51e706} 
+\index{Family@{Family}!Family@{Family}}
+\index{Family@{Family}!Family@{Family}}
+\doxysubsubsection{\texorpdfstring{Family()}{Family()}}
+{\footnotesize\ttfamily Family\+::\+Family (\begin{DoxyParamCaption}\item[{std\+::string}]{title,  }\item[{int}]{runtime,  }\item[{int}]{release,  }\item[{int}]{rating }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\doxylink{class_family}{Family} ctor 
+\begin{DoxyParams}{Parameters}
+{\em title} & cim \\
+\hline
+{\em runtime} & jatekido \\
+\hline
+{\em release} & kidas eve \\
+\hline
+{\em rating} & korhatar \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_family_aad711072bfc69d45b63d9e565adbf876}\label{class_family_aad711072bfc69d45b63d9e565adbf876} 
+\index{Family@{Family}!getRating@{getRating}}
+\index{getRating@{getRating}!Family@{Family}}
+\doxysubsubsection{\texorpdfstring{getRating()}{getRating()}}
+{\footnotesize\ttfamily int Family\+::get\+Rating (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+rating getter \begin{DoxyReturn}{Returns}
+korhatar 
+\end{DoxyReturn}
+\Hypertarget{class_family_a66eb37c8cc9105c0e38dab370c00a9f4}\label{class_family_a66eb37c8cc9105c0e38dab370c00a9f4} 
+\index{Family@{Family}!listAttributes@{listAttributes}}
+\index{listAttributes@{listAttributes}!Family@{Family}}
+\doxysubsubsection{\texorpdfstring{listAttributes()}{listAttributes()}}
+{\footnotesize\ttfamily void Family\+::list\+Attributes (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+ostreamre listazza az adatokat 
+\begin{DoxyParams}{Parameters}
+{\em os} & kiirasi cel \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_film_ad6cb58c044d0110441904f83379ad1eb}{Film}}.
+
+\Hypertarget{class_family_a6d48c088236fcb8dab0b1e13304e4f4c}\label{class_family_a6d48c088236fcb8dab0b1e13304e4f4c} 
+\index{Family@{Family}!setRating@{setRating}}
+\index{setRating@{setRating}!Family@{Family}}
+\doxysubsubsection{\texorpdfstring{setRating()}{setRating()}}
+{\footnotesize\ttfamily void Family\+::set\+Rating (\begin{DoxyParamCaption}\item[{int}]{rating }\end{DoxyParamCaption})}
+
+korhatar setter 
+\begin{DoxyParams}{Parameters}
+{\em rating} & korhatar \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+family.\+h\item 
+family.\+cpp\end{DoxyCompactItemize}

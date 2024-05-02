@@ -1,0 +1,27 @@
+\doxysection{documentary.\+h}
+\hypertarget{documentary_8h_source}{}\label{documentary_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}film.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ NHF\_DOCUMENTARY\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ NHF\_DOCUMENTARY\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_documentary}{Documentary}}:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_film}{Film}}\{}
+\DoxyCodeLine{00009\ \ \ \ \ std::string\ description;\ \ \ \ \textcolor{comment}{//rovid\ leiras}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{class_documentary_a4fff3eeda771809c5e0447a33be89362}{Documentary}}(std::\ string\ title,\ \textcolor{keywordtype}{int}\ runtime,\ \textcolor{keywordtype}{int}\ release,\ std::\ string\ desc):\ \mbox{\hyperlink{class_film}{Film}}(title,\ runtime,\ release),\ description(desc)\ \{\};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_documentary_a533b94ac93809c5d607338bf990215f7}{\string~Documentary}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_documentary_a9eb30ac79d1f8ee035ccd78858b13d5a}{setDescription}}(std::string\ desc);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ \mbox{\hyperlink{class_documentary_a8cd9da402e770b902654e76b031ce3af}{getDescription}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_documentary_aa4e1bf046250262cbf85e5c2288f9f21}{listAttributes}}(std::ostream\ \&os)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//NHF\_DOCUMENTARY\_H}}
+
+\end{DoxyCode}
