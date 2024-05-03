@@ -1,8 +1,10 @@
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include "database.h"
 #include "family.h"
 #include "documentary.h"
+#include "fileHandler.h"
 
 /// database ctor
 /// \param cap kapacitas, default = defCap macro
@@ -82,29 +84,29 @@ void Database::listAll(std::ostream &os) {
 /// adatbazis importalas fajlbol
 /// \param filename file neve
 void Database::import(std::string filename) {
-    std::ifstream input(filename);
-    if (input.is_open()) {
-        std::string type;
-        while (input >> type) {
-            if (type == "Family") {
-                std::string title;
-                int runtime;
-                int release;
-                int age;
-                input >> title >> runtime >> release >> age;
-                add(new Family(title, runtime, release, age));
-            } else if (type == "Documentary") {
-                std::string title;
-                int runtime;
-                int release;
-                std::string desc;
-                input >> title >> runtime >> release >> desc;
-                add(new Documentary(title, runtime, release, desc));
+    fileHandler Handler;
+    std::ifstream input = Handler.openFile(filename);
+        std::string line;
+        while (!(line = Handler.readLine()).empty()) {
+            std::istringstream iss(line);
+            std::string title;
+            int runtime;
+            int release;
+            std::string type;
+            std::string description;
+            int rating;
+
+            iss >> type >> title >> runtime >> release;
+
+            if (type == "Documentary") {
+                iss >> description;
+                add(new Documentary(title, runtime, release, description));
+            } else if (type == "Family") {
+                iss >> rating;
+                add(new Family(title, runtime, release, rating));
             }
-            ///itt bovitheto a tovabbi tipusok importalasa
         }
-    input.close();
-    } else throw "file not found";
+        Handler.closeFile();
 
 }
 
