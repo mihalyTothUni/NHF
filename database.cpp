@@ -4,7 +4,7 @@
 #include "database.h"
 #include "family.h"
 #include "documentary.h"
-#include "fileHandler.h"
+#include "filehandler.h"
 
 /// database ctor
 /// \param cap kapacitas, default = defCap macro
@@ -12,6 +12,18 @@ Database::Database(size_t cap){
     capacity = cap;
     pData = new Film * [cap];
     size = 0;
+}
+
+/// copy ctor
+/// \param other masik adatbazis
+Database::Database(const Database &other) {
+    capacity = other.capacity;
+    size = other.size;
+    pData = new Film*[capacity];
+    for(size_t i = 0; i < size; ++i){
+        pData[i] = other.pData[i];
+    }
+
 }
 
 ///database dtor
@@ -23,6 +35,12 @@ Database::~Database() {
 
 }
 
+///getSize
+/// \return size
+size_t Database::getSize() {
+    return size;
+}
+
 /// film hozzadasa
 /// \param film hozzadando pointer
 void Database::add(Film *film) {
@@ -32,6 +50,7 @@ void Database::add(Film *film) {
 
 ///tarolot noveli (duplazza)
 void Database::extend() {
+    std::cout << "Database extended from " << capacity << " to " << capacity*2 << std::endl;
     Film** temp = new Film*[capacity*2];
     for(size_t i = 0; i < size; ++i){
         temp[i] = pData[i];
@@ -84,40 +103,40 @@ void Database::listAll(std::ostream &os) {
 /// adatbazis importalas fajlbol
 /// \param filename file neve
 void Database::import(std::string filename) {
-    fileHandler Handler;
-    std::ifstream input = Handler.openFile(filename);
-        std::string line;
-        while (!(line = Handler.readLine()).empty()) {
-            std::istringstream iss(line);
-            std::string title;
-            int runtime;
-            int release;
-            std::string type;
-            std::string description;
-            int rating;
-
-            iss >> type >> title >> runtime >> release;
-
-            if (type == "Documentary") {
-                iss >> description;
-                add(new Documentary(title, runtime, release, description));
-            } else if (type == "Family") {
-                iss >> rating;
-                add(new Family(title, runtime, release, rating));
-            }
-        }
-        Handler.closeFile();
-
+    FileHandler handler;
+    handler.import(filename);
+    databaseReceive(handler.senddb());
 }
 
 /// adatbazis kiirasa fajlba
 /// \param filename file neve
 void Database::exportdb(std::string filename) {
-    std::ofstream output(filename);
-    if (output.is_open()) {
-        for (size_t i = 0; i < size; ++i) {
-            pData[i]->listAttributes(output);
-        }
-    output.close();
-    } else throw "file not found";
+    FileHandler handler;
+    handler.receiveDb(*this);
+    handler.exportdb(filename);
+    }
+
+
+void Database::databaseReceive(Database &other) {
+    for (size_t i = 0; i < other.size; ++i) {
+        add(other.pData[i]);
+    }
 }
+
+/// database ertekadas operator
+Database &Database::operator=(const Database &other) {
+    if(this == &other) return *this;
+    for(size_t i = 0; i < size; ++i){
+        delete pData[i];
+    }
+    delete[] pData;
+    capacity = other.capacity;
+    size = other.size;
+    pData = new Film*[capacity];
+    for(size_t i = 0; i < size; ++i){
+        pData[i] = other.pData[i];
+    }
+    return *this;
+}
+
+

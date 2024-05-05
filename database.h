@@ -27,8 +27,21 @@ public:
     /// \param cap kapacitas, default = defCap macro
     explicit Database(size_t cap = defCap);
 
+    /// copy ctor
+    /// \param other masik adatbazis
+    Database(const Database& other);
+
+    ///getSize
+    /// \return size
+    size_t getSize();
+
     ///database dtor
     ~Database();
+
+    /// database ertekadas operator
+    /// \param other masik adatbazis
+    /// \return sajat magara mutato pointer
+    Database& operator=(const Database& other);
 
     /// film hozzadasa
     /// \param film hozzadando pointer
@@ -46,6 +59,12 @@ public:
     /// osszes film adatainak listazasa
     /// \param os kiiras celja
     void listAll(std::ostream& os);
+
+
+    /// databaseReceive
+    /// fileHandler senddb párja
+    /// \param other masik adatbazis
+    void databaseReceive(Database& other);
 
     /// adatbazis importalas fajlbol
     /// \param filename file neve

@@ -17,5 +17,5 @@ add_executable(NHF main.cpp
         film.cpp
         family.cpp
         documentary.cpp
-        fileHandler.h
-        fileHandler.cpp)
+        filehandler.h
+        filehandler.cpp)

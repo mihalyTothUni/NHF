@@ -5,6 +5,7 @@
 #include "family.h"
 #include "documentary.h"
 #include "database.h"
+#include "filehandler.h"
 
 
 #include "memtrace.h"
