@@ -1,47 +1,37 @@
 ///heterogen kollekcio
-
-#include "film.h"
-
-
 #ifndef NHF_DATABASE_H
 #define NHF_DATABASE_H
+
+#include "vector.hpp"
+#include "film.h"
+#include "filehandler.h"
 
 #define defCap 10
 
 class Database{
-    Film** pData;       //tarolo
-    size_t size;        //elemek szama
-    size_t capacity;    //tarolo kapacitas
+    Vector<Film*> pData;        //tarolo
+    FileHandler fh;             //filehandler
 
-    ///tarolot noveli (duplazza)
-    void extend();
 
     /// megkeres egy filmet a taroloban
     /// \param title keresett cim
     /// \return pointer a talalatra
     /// \error char const* "entry not found"
-    Film* search(std::string title);
+    Film* search(const std::string& title);
 
 public:
     /// database ctor
     /// \param cap kapacitas, default = defCap macro
-    explicit Database(size_t cap = defCap);
+    explicit Database(size_t cap=defCap) : pData(cap){}
 
     /// copy ctor
     /// \param other masik adatbazis
     Database(const Database& other);
 
-    ///getSize
-    /// \return size
-    size_t getSize();
-
-    ///database dtor
-    ~Database();
-
-    /// database ertekadas operator
+    ///egyenloseg bool operator
     /// \param other masik adatbazis
-    /// \return sajat magara mutato pointer
-    Database& operator=(const Database& other);
+    /// \return egyenloseg
+    bool operator==(const Database& other) const;
 
     /// film hozzadasa
     /// \param film hozzadando pointer
@@ -49,30 +39,28 @@ public:
 
     /// film eltavolitasa
     /// \param title torlendo film cime
-    void remove(std::string title);
+    void remove(const std::string& title);
+
+    /// teljes adatbazis torlese
+    void clear();
 
     /// film keresese es adatok listazasa
     /// \param title keresett cim
     /// \param os  kiiras celja
-    void searchAndList(std::string title, std::ostream& os);
+    void searchAndList(const std::string& title, std::ostream& os);
 
     /// osszes film adatainak listazasa
     /// \param os kiiras celja
     void listAll(std::ostream& os);
 
 
-    /// databaseReceive
-    /// fileHandler senddb párja
-    /// \param other masik adatbazis
-    void databaseReceive(Database& other);
-
     /// adatbazis importalas fajlbol
     /// \param filename file neve
-    void import(std::string filename);
+    void import(const std::string& filename);
 
     /// adatbazis kiirasa fajlba
     /// \param filename file neve
-    void exportdb(std::string filename);
+    void exportdb(const std::string& filename);
 };
 
 #endif //NHF_DATABASE_H

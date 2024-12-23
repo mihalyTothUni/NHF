@@ -1,18 +1,20 @@
 
-#include <fstream>
 #include <string>
 #include <sstream>
 
 #include "filehandler.h"
 #include "family.h"
 #include "documentary.h"
+#include "memtrace.h"
 
-/// filehandler ctor
-FileHandler::FileHandler() {}
+
+
 
 /// megnyitja a fajlt
-void FileHandler:: openFile(const std::string& filename) {
-    file.open(filename);
+/// \param filename file neve
+void FileHandler:: openFile(const std::string& filename, bool keep) {
+    if(keep) file.open(filename, std::ios::in | std::ios::out | std::ios::app);
+    else file.open(filename, std::ios::in | std::ios::out | std::ios::trunc);
     if(!file.is_open()) throw "file not found";
 }
 
@@ -37,44 +39,28 @@ FileHandler::~FileHandler() {
     closeFile();
 }
 
-void FileHandler::import(std::string filename) {
-    openFile(filename);
-    std::string line;
-    while (!(line = readLine()).empty()) {
-        std::istringstream iss(line);
-        std::string title;
-        int runtime;
-        int release;
-        std::string type;
-        std::string description;
-        int rating;
-
-        iss >> type >> title >> runtime >> release;
-
-        if (type == "Documentary") {
-            iss >> description;
-            db->add(new Documentary(title, runtime, release, description));
-        } else if (type == "Family") {
-            iss >> rating;
-            db->add(new Family(title, runtime, release, rating));
-        }
+Film* FileHandler::getElement() {
+    std::string line = readLine();
+    std::stringstream iss(line);
+    std::string type;
+    (iss >> type).ignore(1);
+    if (type == "Documentary") {
+        Film* docu = new Documentary();
+        docu->deserialize(iss);
+        return docu;
+    } else if (type == "Family") {
+        Film* fam = new Family();
+        fam->deserialize(iss);
+        return fam;
     }
+    else if(type.empty()) return nullptr;
     closeFile();
-
+    throw "invalid input";
 }
 
-Database &FileHandler::senddb() {
-    return *db;
-}
-
-void FileHandler::receiveDb(Database &other) {
-    db = &other;
-
+void FileHandler::writeElement(Film *film) {
+    film->serialize(file);
 }
 
 
-void FileHandler::exportdb(std::string filename) {
-    openFile(filename);
-    db->listAll(file);
-    closeFile();
-}
+

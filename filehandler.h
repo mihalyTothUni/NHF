@@ -5,29 +5,33 @@
 
 #include <fstream>
 #include <string>
-#include "database.h"
+#include "film.h"
 
 class FileHandler {
 private:
-    Database *db;
     std::fstream file;
 public:
-    FileHandler();
 
-    void openFile(const std::string& filename);
+    /// megnyitja a fajlt
+    /// \param filename file neve
+    void openFile(const std::string& filename, bool keep = false);
 
+    /// beolvas egy sort
+    /// \return string a beolvasott sor
     std::string readLine();
 
+    /// bezarja a fajlt
     void closeFile();
 
-    void import(std::string filename);
+    /// visszaadja a kovetkezo film objektumot
+    /// \return Film* film objektum
+    Film* getElement();
 
-    Database& senddb();
+    /// kiir egy film objektumot a fajlba
+    /// \param film film objektum
+    void writeElement(Film* film);
 
-    void receiveDb(Database& other);
-
-    void exportdb(std::string filename);
-
+    /// filehandler dtor
     ~FileHandler();
 };
 #endif //NHF_FILEHANDLER_H

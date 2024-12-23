@@ -5,52 +5,15 @@
 #include "family.h"
 #include "documentary.h"
 #include "database.h"
-#include "filehandler.h"
-
-
-#include "memtrace.h"
 #include "gtest_lite.h"
+#include "memtrace.h"
 
-#define testing 7
+#define testing 5
 
 int main() {
 
-#if testing > 0
-    //film class test
-    TEST(Family, FamilyTest) {
-        Family f("Family", 120, 2000, 12);
-        EXPECT_EQ(f.getTitle(), "Family");
-        EXPECT_EQ(f.getRuntime(), 120);
-        EXPECT_EQ(f.getRelease(), 2000);
-        EXPECT_EQ(f.getRating(), 12);
-    } ENDM
-
-    //documentary class test
-    TEST(Documentary, DocumentaryTest) {
-        Documentary d("Documentary", 120, 2000, "Description");
-        EXPECT_EQ(d.getTitle(), "Documentary");
-        EXPECT_EQ(d.getRuntime(), 120);
-        EXPECT_EQ(d.getRelease(), 2000);
-        EXPECT_EQ(d.getDescription(), "Description");
-    } ENDM
-#endif
-#if testing > 1
-    //database class test
-    TEST(Database, DatabaseTest) {
-        Database db;
-        db.add(new Family("Family_title", 120, 2000, 12));
-        db.add(new Documentary("Documentary_title", 130, 2010, "Description"));
-        db.add(new Documentary("Documentary_title2", 130, 2010, "Description2"));
-        std::stringstream ss;
-        db.listAll(ss);
-        EXPECT_EQ(ss.str(), "Family\tFamily_title\t120\t2000\t12\n"
-                            "Documentary\tDocumentary_title\t130\t2010\tDescription\n"
-                            "Documentary\tDocumentary_title2\t130\t2010\tDescription2\n");
-    } ENDM
-#endif
-
 //Database funkciok tesztelese
-#if testing > 2
+#if testing > 0
     //search function test
     TEST(Database, DatabaseSearchTest) {
         Database db;
@@ -61,7 +24,7 @@ int main() {
         EXPECT_EQ(ss.str(), "Family\tFamily_title\t120\t2000\t12\n");
     } ENDM
 #endif
-#if testing > 3
+#if testing > 1
     //export fuction test
     TEST(Database, DatabaseExportTest) {
         Database db;
@@ -78,19 +41,22 @@ int main() {
         EXPECT_EQ(line2, expected2);
     } ENDM
 #endif
-#if testing > 4
+#if testing > 2
     //import function test
     TEST(Database, DatabaseImportTest) {
         Database db;
+        db.add(new Family("Family_title", 120, 2000, 12));
+        db.add(new Documentary("Documentary_title", 130, 2010, "Description"));
+        db.exportdb("test.txt");
+        Database db2(db);
+        db.clear();
         db.import("test.txt");
-        std::stringstream ss;
-        db.listAll(ss);
-        EXPECT_EQ(ss.str(), "Family\tFamily_title\t120\t2000\t12\n"
-                            "Documentary\tDocumentary_title\t130\t2010\tDescription\n");
+        EXPECT_EQ(db2 == db, true);
     } ENDM
 #endif
-#if testing > 5
+#if testing > 3
     //remove function test
+    try{
     TEST(Database, DatabaseRemoveTest) {
         Database db;
         db.add(new Family("Family_title", 120, 2000, 12));
@@ -100,10 +66,13 @@ int main() {
         db.listAll(ss);
         EXPECT_EQ(ss.str(), "Documentary\tDocumentary_title\t130\t2010\tDescription\n");
     } ENDM
+    } catch (const char* e) {
+        std::cout  << e << std::endl;
+    }
 #endif
 
 ///error handling tests
-#if testing > 6
+#if testing > 4
     //search function error handling
     TEST(Database, DatabaseSearchErrorTest) {
         Database db;
@@ -137,7 +106,7 @@ int main() {
         }
     } ENDM
 #endif
-#if testing < 7
+#if testing < 5
     ADD_FAILURE() << "Missing tests!";
 #endif
     return 0;

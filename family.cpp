@@ -1,25 +1,33 @@
 #include <iostream>
 #include "family.h"
+#include "memtrace.h"
 
-//family ctor
-Family::Family(std::string title, int runtime, int release, int rating) : Film(title, runtime, release), rating(rating){}
 
-/// korhatar setter
-/// \param rating   korhatar
-void Family::setRating(int rating) {
-    this->rating = rating;
-}
 
-/// rating getter
-/// \return korhatar
-int Family::getRating() {
-    return rating;
-}
 
 /// ostreamre listazza az adatokat
 /// \param os kiirasi cel
 void Family::listAttributes(std::ostream &os) {
-    os <<"Family\t" <<getTitle() << "\t" << getRuntime() << "\t" << getRelease() << "\t" << rating << std::endl;
+    os <<"Family\t";
+    Film::listAttributes(os);
+    os  << rating << std::endl;
+}
+
+void Family::serialize(std::iostream& fs) {
+    listAttributes(fs);
+}
+
+void Family::deserialize(std::iostream& fs) {
+    Film::deserialize(fs);
+    (fs >> rating).ignore(1);
+}
+
+bool Family::operator==(const Family &other) const {
+    return Film::operator==(other) && rating == other.rating;
+}
+
+bool Family::operator!=(const Family &other) const {
+    return !(*this == other);
 }
 
 
