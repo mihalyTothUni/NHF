@@ -1,26 +1,33 @@
 #include <iostream>
 
 #include "documentary.h"
-
-//docu ctor
-Documentary::Documentary(std::string title, int runtime, int release, std::string desc): Film(title, runtime, release), description(desc) {}
+#include "memtrace.h"
 
 
-/// leiras setter
-/// \param desc leiras
-void Documentary::setDescription(std::string desc) {
-    description = desc;
-}
 
-/// leiras getter
-/// \return string a leirassal
-std::string Documentary::getDescription() {
-    return description;
-}
 
 /// ostreamre listazza az adatokat
 /// \param os kiiras celja
 void Documentary::listAttributes(std::ostream &os) {
-    os <<"Documentary\t" <<getTitle() << "\t" << getRuntime() << "\t" << getRelease() << "\t" << description << std::endl;
+    os <<"Documentary\t";
+    Film::listAttributes(os);
+    os << description << std::endl;
+}
+
+void Documentary::serialize(std::iostream &fs) {
+    listAttributes(fs);
+}
+
+void Documentary::deserialize(std::iostream &fs) {
+    Film::deserialize(fs);
+    (fs >> description).ignore(1);
+}
+
+bool Documentary::operator==(const Documentary &other) const {
+    return Film::operator==(other) && description == other.description;
+}
+
+bool Documentary::operator!=(const Documentary &other) const {
+    return !(*this == other);
 }
 

@@ -1,8 +1,8 @@
 #include <iostream>
 #include "film.h"
+#include "memtrace.h"
 
-/// film ctor
-Film::Film(std::string title, int runtime, int release) :title(title), runtime(runtime), release(release) {}
+
 
 
 /// title getter
@@ -11,31 +11,29 @@ std::string Film::getTitle() {
     return title;
 }
 
-/// runtime getter
-/// \return jatekido
-int Film::getRuntime() {
-    return runtime;
-}
-
-/// title setter
-/// \param title film cime
-void Film::setTitle(int title) {
-    Film::title = title;
-}
-
-/// runtime setter
-/// \param runtime jatekido
-void Film::setRuntime(int runtime) {
-    Film::runtime = runtime;
-}
 
 /// ostreamre listazza az adatokat
 /// \param os kiirasi cel
 void Film::listAttributes(std::ostream &os) {
-    os << title << "\t" << runtime << "\t" << release << std::endl;
+    os << title << "\t" << runtime << "\t" << release << "\t";
 }
 
-int Film::getRelease() {
-    return release;
+void Film::serialize(std::iostream & fs) {
+    listAttributes(fs);
 }
+
+void Film::deserialize(std::iostream& fs) {
+    (fs >> title).ignore(1);
+    (fs >> runtime).ignore(1);
+    (fs >> release).ignore(1);
+}
+
+bool Film::operator==(const Film &other) const {
+    return title == other.title && runtime == other.runtime && release == other.release;
+}
+
+bool Film::operator!=(const Film &other) const {
+    return !(*this == other);
+}
+
 

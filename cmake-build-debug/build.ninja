@@ -103,6 +103,15 @@ build CMakeFiles/NHF.dir/documentary.cpp.obj: CXX_COMPILER__NHF_unscanned_Debug 
   TARGET_COMPILE_PDB = CMakeFiles\NHF.dir\
   TARGET_PDB = NHF.pdb
 
+build CMakeFiles/NHF.dir/filehandler.cpp.obj: CXX_COMPILER__NHF_unscanned_Debug C$:/code/uni/term$ 2/NHF/filehandler.cpp || cmake_object_order_depends_target_NHF
+  DEFINES = -DMEMTRACE
+  DEP_FILE = CMakeFiles\NHF.dir\filehandler.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\NHF.dir
+  OBJECT_FILE_DIR = CMakeFiles\NHF.dir
+  TARGET_COMPILE_PDB = CMakeFiles\NHF.dir\
+  TARGET_PDB = NHF.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target NHF
@@ -111,7 +120,7 @@ build CMakeFiles/NHF.dir/documentary.cpp.obj: CXX_COMPILER__NHF_unscanned_Debug 
 #############################################
 # Link the executable NHF.exe
 
-build NHF.exe: CXX_EXECUTABLE_LINKER__NHF_Debug CMakeFiles/NHF.dir/main.cpp.obj CMakeFiles/NHF.dir/memtrace.cpp.obj CMakeFiles/NHF.dir/database.cpp.obj CMakeFiles/NHF.dir/film.cpp.obj CMakeFiles/NHF.dir/family.cpp.obj CMakeFiles/NHF.dir/documentary.cpp.obj
+build NHF.exe: CXX_EXECUTABLE_LINKER__NHF_Debug CMakeFiles/NHF.dir/main.cpp.obj CMakeFiles/NHF.dir/memtrace.cpp.obj CMakeFiles/NHF.dir/database.cpp.obj CMakeFiles/NHF.dir/film.cpp.obj CMakeFiles/NHF.dir/family.cpp.obj CMakeFiles/NHF.dir/documentary.cpp.obj CMakeFiles/NHF.dir/filehandler.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\NHF.dir
